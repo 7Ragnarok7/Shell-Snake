@@ -41,7 +41,7 @@ def game():  #main game funtion
         print(i + "- " + j)
         pos[j] = 0  #initializing the positions of each players with zero
     print("\n\nBest of luck! May the odds be in your favour.\n")
-    img.open("Boards/Game_pic.jpg").show()  #show external image
+    img.open("Boards/Game_pic.jpg").resize((600, 600)).show()  #show external image
     flag = True
     while flag:
         for i, j in players.items():
