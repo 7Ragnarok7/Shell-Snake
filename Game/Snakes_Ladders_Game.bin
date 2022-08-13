@@ -1,0 +1,83 @@
+#python 3.7.1
+
+""" ##### Made By: Anurag Mondal / 7Ragnarok7 ####
+    
+    Facebook  : https://facebook.com/7Ragnarok7
+    Twitter   : https://twitter.com/7Ragnarok7
+    LinkedIn  : https://linkedin.com/in/7Ragnarok7
+    GitHub    : https://github.com/7Ragnarok7
+    Dcoder    : https://code.dcoder.tech/profile/7ragnarok7
+    SoloLearn : https://www.sololearn.com/Profile/17985552/?ref=app
+    
+*** THIS IS A MODULAR TERMINAL-BASED GAME OF SNAKES AND LADDERS IN AROUND 60
+    LINES OF CODE WHICH ALLOWS YOU TO CHOOSE YOUR OWN GAME BOARD FROM THE AVAILABLE
+    PRESETS AND EVEN ALLOWS YOU TO MAKE OR DOWNLOAD AND ADD YOUR OWN BOARD TO THE GAME.
+    IT ALSO DISPLAYS THE CURRENT BOARD BEING USED IN A WINDOW BESIDE FOR BETTER GAMEPLAY ***
+"""
+
+from PIL import Image as img
+from numpy import random as rnd
+from time import sleep
+
+def roll_dice():  #function to roll the dice
+    i = time = 0
+    while(i is not rnd.randint(1, 7)):  #to create an animation of the dice rolling
+        i = rnd.randint(1, 7)
+        print("\rRolling..... {}".format(i), end = "")
+        time += 0.05
+        sleep(time)
+    return(i)  
+
+def insert():  #function for reading player info
+    while True :
+        player_num = int(input("Enter the number of players(2-4): ")) 
+        if player_num not in range(2, 5): print("\nPlease enter a valid number of players!\n")  #input validation.
+        else: break 
+    for i in range(player_num): players[pl[i]] = input("\nEnter the name of the {}: ".format(pl[i]))  #inserting values into players dictionary
+
+def game():  #main game funtion
+    print("\nPlayers in the current game are :-\n")
+    for i, j in players.items():
+        print(i + "- " + j)
+        pos[j] = 0  #initializing the positions of each players with zero
+    print("\n\nBest of luck! May the odds be in your favour.\n")
+    img.open("Boards/Game_pic.jpg").show()  #show external image
+    flag = True
+    while flag:
+        for i, j in players.items():
+            choice = input("\n{}'s turn. Enter \"r\" to roll the dice or \"exit\" to quit the game (DONT ENTER ANYTHING ELSE OR YOU WILL LOOSE A TURN!!): ".format(j))
+            if choice == "r": 
+                dice = roll_dice()
+                if pos[j] + dice <= 100:
+                    pos[j] += dice
+                    print("\n{} got {}!".format(j, dice))
+                    if pos[j] in snakes:
+                        pos[j] = pos[j] - snakes[pos[j]]  #keys - value for snakes
+                        print("\n{} got bitten by a snake!".format(j))
+                    elif pos[j] in ladders:
+                        print("\n{} climed up a ladder!".format(j))
+                        pos[j] += ladders[pos[j]]  #keys + values for ladders
+                    print("Current position =",pos[j])
+                    if pos[j] == 100:
+                        print(j + " Won the game! Congrats!")
+                        flag = False
+                        break
+                else:
+                    print("\n{} got {}!".format(j, dice))
+                    print("\nYou must get a {} to win the game!".format(100-pos[j]))
+                    print("\nCurrent position =", pos[j])
+            elif choice == "exit":
+                flag = False
+                break
+            else: print ("\nWrong choice! You lost a turn... \n")  
+
+snakes, ladders = open("Boards/Game.bin").read().split("\n")  #Reading the external game file directly without closing it to save some lines of code.
+snakes, ladders = snakes.split(":"), ladders.split(":")
+snakes[0], snakes[1] = list(map(int, snakes[0].split(","))), list(map(int, snakes[1].split(",")))
+ladders[0], ladders[1] = list(map(int, ladders[0].split(","))), list(map(int, ladders[1].split(",")))
+snakes, ladders = dict(zip(snakes[0], snakes[1])), dict(zip(ladders[0], ladders[1]))  #Creating dictionaries of position : diff_btw_head_and_tail.
+global player_num  #global value to update it from insert function
+pl = ["Player 1", "Player 2", "Player 3", "Player 4"]  #temp player list
+players, pos = {}, {}
+insert()
+game()
