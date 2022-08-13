@@ -116,3 +116,4 @@ colors = [RED, GREEN, BLUE, YELLOW]
 players, pos = {}, {}
 insert()
 game()
+input()
