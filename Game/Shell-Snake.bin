@@ -5,12 +5,16 @@ from colorama import init, Fore
 
 #SETTING UP A COLOR SCHEME FOR BETTER VISUALISATION
 init()
-BLUE = Fore.BLUE   		#FOR MARKING THE WINNER 
-RED = Fore.RED	   		#FOR MARKING SNAKE EVENTS
-GREEN = Fore.GREEN 		#FOR MARKING LADDER EVENTS
-RESET = Fore.RESET		#FOR RESETTING TO DEFAULT SHELL COLOR
-YELLOW = Fore.YELLOW		#FOR MARKING USER INPUT AND OUTPUT
+
+MAGENTA = Fore.MAGENTA		#FOR MARKING PLAYER 1
+YELLOW = Fore.YELLOW		#FOR MARKING USER INPUT AND OUTPUT / PLAYER 2
+BLUE = Fore.BLUE   		#FOR MARKING THE WINNER / PLAYER 3
+RED = Fore.RED	   		#FOR MARKING SNAKE EVENTS / PLAYER 4
 CYAN = Fore.CYAN			#FOR MARKING DICE VALUES
+GREEN = Fore.GREEN 		#FOR MARKING LADDER EVENTS / ROLLING DUCE
+GRAY = Fore.LIGHTBLACK_EX	#FOR MARKING ALERTS
+RESET = Fore.RESET		#FOR RESETTING TO DEFAULT SHELL COLOR
+
 
 #GRAPHICS/TEXT ART
 print(GREEN + '''
@@ -75,11 +79,11 @@ def game():  #main game funtion
         print(f"{i}: {colors[keys.index(i)]}{j}{RESET}")
         pos[j] = 0  #initializing the positions of each players with zero
     print(f"\n\n{YELLOW}Best of luck! May the odds be in your favour.\n{RESET}")
-    img.open("Boards/Game_pic.jpg").resize((650, 650)).show()  #show external image
+    image.show()  #show external image
     flag = True
     while flag:
         for i, j in players.items():
-            choice = input(f"\n{colors[keys.index(i)]}{j}'s turn.{RESET} Enter \"r\" to roll the dice or \"exit\" to quit the game {RED}(DONT ENTER ANYTHING ELSE OR YOU WILL LOOSE A TURN!!):{RESET} ")
+            choice = input(f"\n{colors[keys.index(i)]}{j}'s turn.{RESET} Enter \"r\" to roll the dice or \"exit\" to quit the game {GRAY}(DONT ENTER ANYTHING ELSE OR YOU WILL LOOSE A TURN!!):{RESET} ")
             if choice == "r": 
                 dice = roll_dice()
                 if pos[j] + dice <= 100:
@@ -103,7 +107,7 @@ def game():  #main game funtion
             elif choice == "exit":
                 flag = False
                 break
-            else: print (f"\n{RED}Wrong choice! You lost a turn... \n")  
+            else: print (f"\n{GRAY}Wrong choice! You lost a turn... \n")  
 
 snakes, ladders = open("Boards/Game.bin").read().split("\n")  #Reading the external game file directly without closing it to save some lines of code.
 snakes, ladders = snakes.split(":"), ladders.split(":")
@@ -112,8 +116,10 @@ ladders[0], ladders[1] = list(map(int, ladders[0].split(","))), list(map(int, la
 snakes, ladders = dict(zip(snakes[0], snakes[1])), dict(zip(ladders[0], ladders[1]))  #Creating dictionaries of position : diff_btw_head_and_tail.
 global player_num  #global value to update it from insert function
 pl = ["Player 1", "Player 2", "Player 3", "Player 4"]  #temp player list
-colors = [RED, GREEN, BLUE, YELLOW]
+colors = [MAGENTA, YELLOW, BLUE, RED]
 players, pos = {}, {}
 insert()
+image = img.open("Boards/Game_pic.jpg").resize((650, 650))
 game()
+image.close()
 input()
