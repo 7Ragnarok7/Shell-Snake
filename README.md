@@ -43,17 +43,21 @@ It also displays the current board being used in a window beside for better game
  - Is colorful. Provides colored event-based visual responses
  
 ### Legend/Color schemes :-
- - BLUE	  -->  FOR MARKING THE SUCCESSFUL STARTING AND COMPLETION OF THE PROGRAM
+ - MAGENTA -->  FOR MARKING PLAYER 1
+
+ - YELLOW  -->  FOR MARKING USER INPUT AND OUTPUT / PLAYER 2
+
+ - BLUE    -->  FOR MARKING THE WINNER / PLAYER 3
  
- - RED    -->  FOR MARKING STARTING/ENDING OF AN EVENT OR  ERROR
+ - RED     -->  FOR MARKING SNAKE EVENTS / PLAYER 4
+
+ - CYAN    -->  FOR MARKING DICE VALUES
  
- - GREEN  -->  FOR MARKING A SUCCESSFUL HOST/PORT DISCOVERY AND HELP MENU
+ - GREEN   -->  FOR MARKING LADDER EVENTS / ROLLING DICE
 
- - RESET  -->  FOR RESETTING TO DEFAULT SHELL COLOR
+ - GRAY    -->  FOR MARKING ALERTS
 
- - GRAY   -->  FOR MARKING AN UNSUCCESSFUL HOST/PORT DISCOVERY IN VERBOSE MODE
-
- - YELLOW -->  FOR MARKING DEBUGGING STATEMENTS
+ - RESET   -->  FOR RESETTING TO DEFAULT SHELL COLOR
 
 ### Reporting :-
  - Report BUGS at [( https://github.com/7Ragnarok7/Shell-Snake/issues )](https://github.com/7Ragnarok7/Shell-Snake/issues)
