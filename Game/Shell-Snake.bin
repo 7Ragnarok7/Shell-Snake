@@ -68,7 +68,7 @@ def roll_dice():  #function to roll the dice
 def insert():  #function for reading player info
     while True :
         player_num = int(input(f"{YELLOW}Enter the number of players (2-4): {RESET}")) 
-        if player_num not in range(2, 5): print(f"\n{RED}Please enter a valid number of players!\n")  #input validation.
+        if player_num not in range(2, 5): print(f"\n{GRAY}Please enter a valid number of players!\n")  #input validation.
         else: break 
     for i in range(player_num): players[pl[i]] = input(f"\n{YELLOW}Enter the name of the {pl[i]}: {RESET}")  #inserting values into players dictionary
 
