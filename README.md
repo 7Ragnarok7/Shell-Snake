@@ -68,7 +68,7 @@ It also displays the current board being used in a window beside for better game
 ### Feedback :-
  - Share your feedback and discuss about the project at [(https://github.com/7Ragnarok7/Shell-Snake/discussions)](https://github.com/7Ragnarok7/Shell-Snake/discussions)
 
-[//]: # "References below:-"
+[//]: # "References below:-" 
 
 [py]:<https://www.python.org>
 [pp]:<https://pip.pypa.io/en/stable/installing>
