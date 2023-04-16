@@ -63,7 +63,7 @@ It also displays the current board being used in a window beside for better game
 
 ### Reporting :-
  - Report BUGS at [( https://github.com/7Ragnarok7/Shell-Snake/issues )](https://github.com/7Ragnarok7/Shell-Snake/issues)
- - Reporting guide/template [can be found here.](https://github.com/7Ragnarok7/Shell-Snake/tree/main/.github/ISSUE_TEMPLATE)
+ - Reporting guide/template [can be found here.](.github/ISSUE_TEMPLATE)
 
 ### Feedback :-
  - Share your feedback and discuss about the project at [(https://github.com/7Ragnarok7/Shell-Snake/discussions)](https://github.com/7Ragnarok7/Shell-Snake/discussions)
