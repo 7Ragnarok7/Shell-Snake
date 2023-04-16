@@ -1,4 +1,7 @@
 # *Shell-Snake*
+
+
+[![Python Version](https://img.shields.io/badge/python-3.9+-008000.svg)](https://www.python.org)  [![License](https://img.shields.io/badge/license-MIT-800000.svg)](LICENSE) [![Windows Support](https://img.shields.io/badge/Supports-Windows-0000ff.svg)](https://www.microsoft.com/en-us/windows) [![Linux Support](https://img.shields.io/badge/Supports-Android-ff4500.svg)](https://www.android.com/) [![Linux Support](https://img.shields.io/badge/Support-Linux-00ff00.svg)](https://www.linux.org/)
 [![Shell-Snake-icon](image-src/image.png)][page]
 
 ### A GUI-Independent and Modular CLI Snakes and Ladders game
