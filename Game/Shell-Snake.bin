@@ -1,0 +1,125 @@
+from PIL import Image as img
+from numpy import random as rnd
+from time import sleep
+from colorama import init, Fore
+
+#SETTING UP A COLOR SCHEME FOR BETTER VISUALISATION
+init()
+
+MAGENTA = Fore.MAGENTA		#FOR MARKING PLAYER 1
+YELLOW = Fore.YELLOW		#FOR MARKING USER INPUT AND OUTPUT / PLAYER 2
+BLUE = Fore.BLUE   		#FOR MARKING THE WINNER / PLAYER 3
+RED = Fore.RED	   		#FOR MARKING SNAKE EVENTS / PLAYER 4
+CYAN = Fore.CYAN			#FOR MARKING DICE VALUES
+GREEN = Fore.GREEN 		#FOR MARKING LADDER EVENTS / ROLLING DICE
+GRAY = Fore.LIGHTBLACK_EX	#FOR MARKING ALERTS
+RESET = Fore.RESET		#FOR RESETTING TO DEFAULT SHELL COLOR
+
+
+#GRAPHICS/TEXT ART
+print(GREEN + '''
+   ░██████╗██╗░░██╗███████╗██╗░░░░░██╗░░░░░░░░░░░░██████╗███╗░░██╗░█████╗░██╗░░██╗███████╗
+   ██╔════╝██║░░██║██╔════╝██║░░░░░██║░░░░░░░░░░░██╔════╝████╗░██║██╔══██╗██║░██╔╝██╔════╝
+   ╚█████╗░███████║█████╗░░██║░░░░░██║░░░░░█████╗╚█████╗░██╔██╗██║███████║█████═╝░█████╗░░
+   ░╚═══██╗██╔══██║██╔══╝░░██║░░░░░██║░░░░░╚════╝░╚═══██╗██║╚████║██╔══██║██╔═██╗░██╔══╝░░
+   ██████╔╝██║░░██║███████╗███████╗███████╗░░░░░░██████╔╝██║░╚███║██║░░██║██║░╚██╗███████╗
+   ╚═════╝░╚═╝░░╚═╝╚══════╝╚══════╝╚══════╝░░░░░░╚═════╝░╚═╝░░╚══╝╚═╝░░╚═╝╚═╝░░╚═╝╚══════╝
+''')
+      
+print(RED + '''                                                                        
+                              ████████████████                                
+                          ████  ██░░░░██  ██▒▒████                            
+                        ██      ██░░██      ██▒▒▒▒██                          
+                      ██      ██░░░░██        ██▒▒██                          
+                    ██      ████░░████        ██▒▒██                          
+                    ██    ██████░░██████      ██▒▒▒▒██                        
+                    ██    ██████░░██████      ██▒▒▒▒██                        
+                    ██    ████░░░░██████      ██▒▒▒▒██                        
+                    ██      ██░░░░████      ██▒▒▒▒▒▒██                        
+                    ████████░░░░░░██      ██▒▒▒▒▒▒▒▒██                        
+                    ██▒▒▒▒▒▒░░░░░░░░██████▒▒▒▒▒▒▒▒▒▒██                        
+                      ██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██▒▒▒▒██                          
+                        ████████████████████▒▒▒▒▒▒██                          
+                        ▒▒▒▒▒▒▒▒██▒▒▒▒▒▒▒▒▒▒▒▒▒▒██                            
+                      ▒▒▒▒▒▒▒▒  ████▒▒▒▒▒▒▒▒▒▒██                              
+                  ▒▒▒▒▒▒▒▒▒▒    ██    ▒▒▒▒▒▒▒▒████████                        
+              ▒▒▒▒▒▒▒▒▒▒▒▒    ██░░░░░░░░▒▒▒▒████▒▒▒▒▒▒██                      
+          ▒▒▒▒▒▒▒▒▒▒▒▒        ██        ▒▒▒▒██▒▒▒▒▒▒▒▒▒▒██                    
+                ▒▒▒▒          ██░░░░░░▒▒▒▒▒▒██▒▒▒▒▒▒▒▒▒▒▒▒████████            
+              ▒▒▒▒            ██      ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██▒▒▒▒▒▒██          
+                              ██░░░░░░▒▒░░▒▒▒▒▒▒▒▒██▒▒▒▒▒▒▒▒▒▒▒▒▒▒██          
+                              ██    ▒▒░░▒▒▒▒▒▒▒▒██▒▒▒▒▒▒▒▒▒▒▒▒▒▒██            
+                              ██░░░░░░▒▒▒▒▒▒▒▒██  ██  ▒▒▒▒▒▒▒▒██              
+                                ██░░░░░░▒▒▒▒██      ██  ▒▒████                
+                                  ██████████        ██████                    
+          
+''')
+
+
+def roll_dice():  #function to roll the dice
+    i = time = 0
+    while(i is not rnd.randint(1, 7)):  #to create an animation of the dice rolling
+        i = rnd.randint(1, 7)
+        print(f"\r{GREEN}Rolling..... {CYAN}{i}{RESET}", end = "")
+        time += 0.05
+        sleep(time)
+    return(i)  
+
+def insert():  #function for reading player info
+    while True :
+        player_num = int(input(f"{YELLOW}Enter the number of players (2-4): {RESET}")) 
+        if player_num not in range(2, 5): print(f"\n{GRAY}Please enter a valid number of players!\n")  #input validation.
+        else: break 
+    for i in range(player_num): players[pl[i]] = input(f"\n{YELLOW}Enter the name of the {pl[i]}: {RESET}")  #inserting values into players dictionary
+
+def game():  #main game funtion
+    print(f"{RESET}\nPlayers in the current game are :-\n")
+    keys = list(players)
+    for i, j in players.items():
+        print(f"{i}: {colors[keys.index(i)]}{j}{RESET}")
+        pos[j] = 0  #initializing the positions of each players with zero
+    print(f"\n\n{YELLOW}Best of luck! May the odds be in your favour.\n{RESET}")
+    image.show()  #show external image
+    flag = True
+    while flag:
+        for i, j in players.items():
+            choice = input(f"\n{colors[keys.index(i)]}{j}'s turn.{RESET} Enter \"r\" to roll the dice or \"exit\" to quit the game {GRAY}(DONT ENTER ANYTHING ELSE OR YOU WILL LOOSE A TURN!!):{RESET} ")
+            if choice == "r": 
+                dice = roll_dice()
+                if pos[j] + dice <= 100:
+                    pos[j] += dice
+                    print(f"\n\n{colors[keys.index(i)]}{j}{RESET} got {CYAN}{dice}!{RESET}")
+                    if pos[j] in snakes:
+                        pos[j] = pos[j] - snakes[pos[j]]  #keys - value for snakes
+                        print(f"\n{colors[keys.index(i)]}{j}{RED} got bitten by a snake!")
+                    elif pos[j] in ladders:
+                        print(f"\n{colors[keys.index(i)]}{j}{GREEN} climed up a ladder!")
+                        pos[j] += ladders[pos[j]]  #keys + values for ladders
+                    print(f"{RESET}Current position = {CYAN}{pos[j]}")
+                    if pos[j] == 100:
+                        print(f"{colors[keys.index(i)]}{j}{BLUE} Won the game! Congrats!{RESET}\n")
+                        flag = False
+                        break
+                else:
+                    print(f"\n\n{colors[keys.index(i)]}{j}{RESET} got {CYAN}{dice}!{RESET}")
+                    print(f"\n{YELLOW}You must get a {100-pos[j]} to win the game!")
+                    print(f"{RESET}Current position = {CYAN}{pos[j]}")
+            elif choice == "exit":
+                flag = False
+                break
+            else: print (f"\n{GRAY}Wrong choice! You lost a turn... \n")  
+
+snakes, ladders = open("Boards/Game.bin").read().split("\n")  #Reading the external game file directly without closing it to save some lines of code.
+snakes, ladders = snakes.split(":"), ladders.split(":")
+snakes[0], snakes[1] = list(map(int, snakes[0].split(","))), list(map(int, snakes[1].split(",")))
+ladders[0], ladders[1] = list(map(int, ladders[0].split(","))), list(map(int, ladders[1].split(",")))
+snakes, ladders = dict(zip(snakes[0], snakes[1])), dict(zip(ladders[0], ladders[1]))  #Creating dictionaries of position : diff_btw_head_and_tail.
+global player_num  #global value to update it from insert function
+pl = ["Player 1", "Player 2", "Player 3", "Player 4"]  #temp player list
+colors = [MAGENTA, YELLOW, BLUE, RED]
+players, pos = {}, {}
+insert()
+image = img.open("Boards/Game_pic.jpg").resize((650, 650))
+game()
+image.close()
+input()
