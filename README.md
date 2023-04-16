@@ -10,7 +10,7 @@
 ***Shell-Snake*** allows you to choose your own game board from the available presets and also allows you to make or download and add your own board to the game.  
 It also displays the current board being used in a window beside for better gameplay.
 
-### Checkout the demo video here --> [https://youtu.be/Aa9L9hZfMOQ](https://youtu.be/Aa9L9hZfMOQ)
+### Checkout the demo video here --> [https://youtu.be/UrnF3XeElIA](https://youtu.be/UrnF3XeElIA)
 
 ### [CODE OF CONDUCT](CODE_OF_CONDUCT.md)
 
