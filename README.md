@@ -1,5 +1,5 @@
 # *Shell-Snake*
-[![Shell-Snake-icon](https://raw.githubusercontent.com/7Ragnarok7/Shell-Snake/main/image-src/image.png)][page]
+[![Shell-Snake-icon](image-src/image.png)][page]
 
 ### A GUI-Independent and Modular CLI Snakes and Ladders game
 
